@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Audio Recorder</title>
+    <style>
+      body {
+        width: 300px;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+      }
+      .recording-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: gray;
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .recording {
+        background-color: red;
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      button {
+        margin: 5px;
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+      #timer {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+      #permissionStatus {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 4px;
+        display: none;
+        background-color: #fff3e0;
+        color: #ef6c00;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="permissionStatus"></div>
+    <div>
+      <div id="recordingIndicator" class="recording-indicator"></div>
+      <span id="status">Not Recording</span>
+    </div>
+    <div id="timer">00:00:00</div>
+    <button id="startRecord">Start Recording</button>
+    <button id="stopRecord" disabled>Stop Recording</button>
+    <script src="popup.js"></script>
+  </body>
+</html>
