@@ -1,5 +1,5 @@
 {
-  "name": "Audio recorder",
+  "name": "Chrome Recorder",
   "description": "Records tab audio and mic audio",
   "version": "1.0",
   "manifest_version": 3,
@@ -12,5 +12,11 @@
     "service_worker": "service-worker.js"
   },
   "permissions": ["tabCapture", "offscreen", "tabs", "windows", "activeTab"],
-  "host_permissions": ["*://*/*"]
+  "host_permissions": ["*://*/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["permission.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

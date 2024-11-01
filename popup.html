@@ -34,9 +34,18 @@
         opacity: 0.6;
         cursor: not-allowed;
       }
+      #permissionStatus {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 4px;
+        display: none;
+        background-color: #fff3e0;
+        color: #ef6c00;
+      }
     </style>
   </head>
   <body>
+    <div id="permissionStatus"></div>
     <button id="startRecord">Start Recording</button>
     <button id="stopRecord">Stop Recording</button>
     <script src="popup.js"></script>

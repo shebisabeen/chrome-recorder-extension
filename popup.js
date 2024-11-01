@@ -2,8 +2,34 @@
 const startButton = document.getElementById("startRecord");
 const stopButton = document.getElementById("stopRecord");
 
+let permissionStatus = document.getElementById("permissionStatus");
+
+function showError(message) {
+  permissionStatus.textContent = message;
+  permissionStatus.style.display = "block";
+}
+
+function hideError() {
+  permissionStatus.style.display = "none";
+}
+
+async function checkMicrophonePermission() {
+  try {
+    await navigator.mediaDevices.getUserMedia({ audio: true });
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 // Check recording state when popup opens
 async function checkRecordingState() {
+  const hasPermission = await checkMicrophonePermission();
+  if (!hasPermission) {
+    chrome.tabs.create({ url: "permission.html" });
+    return;
+  }
+
   const contexts = await chrome.runtime.getContexts({});
   const offscreenDocument = contexts.find(
     (c) => c.contextType === "OFFSCREEN_DOCUMENT"
