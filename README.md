@@ -1,4 +1,4 @@
-# Voicenotes Recorder Chrome Extension
+# Chrome Recorder Extension
 
 A Chrome extension that simultaneously records both tab audio and microphone input, with advanced audio processing capabilities.
 
