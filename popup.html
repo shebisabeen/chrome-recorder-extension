@@ -17,17 +17,33 @@
         border: none;
         border-radius: 4px;
         width: 100%;
+        opacity: 0; /* Start with 0 opacity */
+        transition: opacity 0.3s ease-in-out; /* Smooth transition for opacity */
+        position: absolute; /* Prevent layout shifting */
       }
 
       #startRecord {
         background: #4caf50;
         color: white;
+        display: none;
       }
 
       #stopRecord {
         background: #f44336;
         color: white;
         display: none;
+      }
+
+      /* New class for visible buttons */
+      button.visible {
+        opacity: 1;
+      }
+
+      /* Add a container for the buttons to maintain layout */
+      .button-container {
+        position: relative;
+        height: 38px; /* Height of your buttons */
+        margin: 10px 0;
       }
 
       button:disabled {
@@ -46,8 +62,10 @@
   </head>
   <body>
     <div id="permissionStatus"></div>
-    <button id="startRecord">Start Recording</button>
-    <button id="stopRecord">Stop Recording</button>
+    <div class="button-container">
+      <button id="startRecord">Start Recording</button>
+      <button id="stopRecord">Stop Recording</button>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>

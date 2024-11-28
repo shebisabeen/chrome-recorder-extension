@@ -51,6 +51,14 @@ chrome.runtime.onMessage.addListener(async (message) => {
       case "recording-stopped":
         chrome.action.setIcon({ path: "icons/not-recording.png" });
         break;
+
+      case "update-icon":
+        chrome.action.setIcon({
+          path: message.recording
+            ? "icons/recording.png"
+            : "icons/not-recording.png",
+        });
+        break;
     }
   }
 });

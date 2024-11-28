@@ -101,6 +101,12 @@ async function startRecording(streamId) {
 
     recorder.start();
     window.location.hash = "recording";
+
+    chrome.runtime.sendMessage({
+      type: "update-icon",
+      target: "service-worker",
+      recording: true,
+    });
   } catch (error) {
     console.error("Error starting recording:", error);
     chrome.runtime.sendMessage({
@@ -118,6 +124,12 @@ async function stopRecording() {
 
   await stopAllStreams();
   window.location.hash = "";
+
+  chrome.runtime.sendMessage({
+    type: "update-icon",
+    target: "service-worker",
+    recording: false,
+  });
 }
 
 async function stopAllStreams() {

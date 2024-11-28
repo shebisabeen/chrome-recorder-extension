@@ -1,6 +1,6 @@
 {
-  "name": "Chrome Recorder",
-  "description": "Records tab audio and mic audio",
+  "name": "Simple Chrome Recorder",
+  "description": "A powerful Chrome extension that simultaneously records tab audio and microphone input with advanced audio processing, including noise suppression, echo cancellation, and customizable gain control. Perfect for creating voiceovers, commentary, and capturing both system audio and voice input.",
   "version": "1.0",
   "manifest_version": 3,
   "minimum_chrome_version": "116",
@@ -11,11 +11,11 @@
   "background": {
     "service_worker": "service-worker.js"
   },
-  "permissions": ["tabCapture", "offscreen", "tabs", "windows", "activeTab"],
+  "permissions": ["tabCapture", "offscreen", "activeTab"],
   "host_permissions": ["*://*/*"],
   "web_accessible_resources": [
     {
-      "resources": ["permission.html"],
+      "resources": ["permission.html", "offscreen.html"],
       "matches": ["<all_urls>"]
     }
   ]

@@ -39,11 +39,11 @@ async function checkRecordingState() {
     offscreenDocument &&
     offscreenDocument.documentUrl.endsWith("#recording")
   ) {
-    startButton.style.display = "none";
     stopButton.style.display = "block";
+    setTimeout(() => stopButton.classList.add("visible"), 10);
   } else {
     startButton.style.display = "block";
-    stopButton.style.display = "none";
+    setTimeout(() => startButton.classList.add("visible"), 10);
   }
 }
 
@@ -94,21 +94,31 @@ startButton.addEventListener("click", async () => {
       data: streamId,
     });
 
-    startButton.style.display = "none";
-    stopButton.style.display = "block";
+    startButton.classList.remove("visible");
+    setTimeout(() => {
+      startButton.style.display = "none";
+      stopButton.style.display = "block";
+      setTimeout(() => stopButton.classList.add("visible"), 10);
+    }, 300);
   } catch (error) {
     alert("Failed to start recording: " + error.message);
   }
 });
 
 stopButton.addEventListener("click", () => {
-  chrome.runtime.sendMessage({
-    type: "stop-recording",
-    target: "offscreen",
-  });
+  setTimeout(() => {
+    chrome.runtime.sendMessage({
+      type: "stop-recording",
+      target: "offscreen",
+    });
+  }, 500);
 
-  startButton.style.display = "block";
-  stopButton.style.display = "none";
+  stopButton.classList.remove("visible");
+  setTimeout(() => {
+    stopButton.style.display = "none";
+    startButton.style.display = "block";
+    setTimeout(() => startButton.classList.add("visible"), 10);
+  }, 300);
 });
 
 // Listen for messages from offscreen document and service worker
